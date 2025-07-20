@@ -1,10 +1,10 @@
-# CRUD Operations Using Django Shell
+# CRUD Operations for Book Model
 
-This section documents the create, retrieve, update, and delete operations on the `Book` model via the Django shell.
+This file documents create, retrieve, update, and delete operations on the `Book` model using Django ORM via the shell.
 
 ---
 
-## Create a Book
+## Create
 
 ```python
 from bookshelf.models import Book
@@ -15,28 +15,41 @@ book = Book.objects.create(
     publication_year=1949
 )
 
-# Retrieve book
-
 book
 # <Book: 1984 by George Orwell (1949)>
+```
 
-# Update the book title
+---
 
+## Retrieve
+
+```python
 book = Book.objects.get(title="1984")
 
 print(book.title, book.author, book.publication_year)
 # 1984 George Orwell 1949
+```
 
+---
+
+## Update
+
+```python
 book.title = "Nineteen Eighty-Four"
 book.save()
 
 book
 # <Book: Nineteen Eighty-Four by George Orwell (1949)>
+```
 
-# Delete the book
+---
+
+## Delete
+
+```python
 book.delete()
 # (1, {'bookshelf.Book': 1})
 
 Book.objects.all()
 # <QuerySet []>
-
+```
