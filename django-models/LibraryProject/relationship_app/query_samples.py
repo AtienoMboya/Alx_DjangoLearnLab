@@ -16,7 +16,7 @@ except Author.DoesNotExist:
 library_name = "Central Library"
 
 try:
-    library = Library.objects.get(name=library_name)  # <- Required line
+    library = Library.objects.get(name=library_name)
     books_in_library = library.books.all()
     print(f"\nBooks in {library.name}:")
     for book in books_in_library:
@@ -24,10 +24,10 @@ try:
 except Library.DoesNotExist:
     print(f"No library found with name {library_name}")
 
-# --- Query 3: Retrieve the librarian for a library ---
+# --- Query 3: Retrieve the librarian for a library (required: Librarian.objects.get(library=...) ) ---
 try:
-    library = Library.objects.get(name=library_name)  # <- Required line
-    librarian = library.librarian
+    library = Library.objects.get(name=library_name)
+    librarian = Librarian.objects.get(library=library)  # <- Required line
     print(f"\nLibrarian for {library.name}: {librarian.name}")
 except Library.DoesNotExist:
     print(f"No library found with name {library_name}")
